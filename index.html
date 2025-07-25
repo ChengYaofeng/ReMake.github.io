@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rethinking Transparent Object Grasping: Depth Completion with Monocular Depth Estimation and Instance Mask</title>
+    <title>ReMake</title>
     <!-- Bootstrap -->
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
@@ -30,8 +30,9 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col">
-            <h2 style="font-size:30px;">ReMake:</h2>
-            <h4 style="color:#6e6e6e;">  </h4>
+            <h2 style="font-size:30px;">Rethinking Transparent Object Grasping:</h2> 
+            <h2 style="font-size:30px;">Depth Completion with Monocular Depth Estimation and Instance Mask</h2>
+            <!-- <h4 style="color:#6e6e6e;">  </h4> -->
             <hr>
             <h6>
               Yaofeng Cheng<sup>1,2,3</sup>&nbsp; &nbsp;
@@ -84,7 +85,7 @@
               <br>
             </div>
             <p class="text-justify">
-	      We propose ReMake, <b>Re</b>lative depth and <b>Ma</b>s<b>k</b> att<b>e</b>ntion guided depth completion.
+	      We propose <b>ReMake</b>, <b>Re</b>lative depth and <b>Ma</b>s<b>k</b> att<b>e</b>ntion guided depth completion.
         We predict a complete depth map from a single RGB-D image, enabling accurate target object points extraction 
         and 6-DoF grasp prediction.
             </p>
@@ -175,7 +176,14 @@
                     <img src="images/fig4.png" alt="input" class="img-responsive graph" width="95%"/>
                   </div>
                 </p>
-                 We tested our method in real-world experiments. To better evaluate the generalization, we tested different objects, background and viewpoints.
+                 We tested our method in real-world experiments. 
+                 To evaluate generalization more effectively, we varied the objects, backgrounds, and viewpoints during testing, 
+                 noting that viewpoint changes also alter background depth.
+                <p class="text-justify">
+                  <div class="row justify-content-center" style="align-items:center; display:flex;">
+                    <img src="images/fig6.png" alt="input" class="img-responsive graph" width="95%"/>
+                  </div>
+                </p>
                 <p class="text-justify">
                   <h3 style="margin-top:20px; margin-bottom:20px; color:#717980"><b>Top-down View</b></h3>
                   <div class="row justify-content-center" style="align-items:center; display:flex;">
