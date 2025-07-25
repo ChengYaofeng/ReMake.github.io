@@ -80,11 +80,13 @@
         <div class="col-12 text-center">
             <hr style="margin-top:0px">
               <div class="row justify-content-center" style="align-items:center; display:flex;">
-               <img src="" alt="input" class="img-responsive graph" width="95%"/>
+               <img src="images/fig1.png" alt="input" class="img-responsive graph" width="95%"/>
               <br>
             </div>
             <p class="text-justify">
-	      We propose ReMake
+	      We propose ReMake, <b>Re</b>lative depth and <b>Ma</b>s<b>k</b> att<b>e</b>ntion guided depth completion.
+        We predict a complete depth map from a single RGB-D image, enabling accurate target object points extraction 
+        and 6-DoF grasp prediction.
             </p>
         </div>
       </div>
@@ -100,7 +102,24 @@
           <h2><strong>Abstract</strong></h2>
             <hr style="margin-top:0px">
             <p class="text-justify">
-              ReMake
+              Transparent objects are common in daily life. 
+              Unlike opaque objects, light emitted from depth cameras is often refracted or reflected on transparent surfaces, 
+              resulting in missing or erroneous depth values. 
+              Only regions where reflected light returns to the camera yield valid depth values. 
+              The mixture of missing, incorrect, and valid depth introduces significant noise, 
+              hindering accurate perception and reliable grasping. 
+              However, most existing methods only feed RGB-D image into the network, 
+              requiring the model to implicitly distinguish between reliable and unreliable depth. While effective on training datasets, 
+              these methods struggle to generalize to real-world scenes due to the highly variable distribution of valid and invalid depth caused by complex light interactions. 
+              This motivates us to rethink the efficiency of current training strategies. 
+              To address this, we propose ReMake, a novel depth completion framework guided by instance mask and relative depth. 
+              The mask explicitly distinguishes regions from non-transparent ones, 
+              enabling the model to focus on learning to predict accurate depth in transparent areas from RGB-D input during its training process. 
+              This targeted supervision reduces reliance on implicit reasoning and improves generalization to real-world scenarios. 
+              Additionally, the relative depth map encodes spatial relationships between the transparent object and its surroundings, 
+              enhancing prediction accuracy. 
+              Extensive experiments show that our method outperforms existing approaches on both benchmark datasets and real-world scenarios, 
+              demonstrating superior accuracy and generalization capability.
           </p>
         </div>
       </div>
@@ -117,10 +136,14 @@
             <hr style="margin-top:0px">
             <h3 style="margin-top:20px; margin-bottom:20px; color:#717980"><b>Full pipeline</b></h3>
               <div class="row justify-content-center" style="align-items:center; display:flex;">
-                <img src="" alt="input" class="img-responsive graph" width="95%"/>
+                <img src="images/fig3.png" alt="input" class="img-responsive graph" width="95%"/>
               </div>
               <p class="text-justify">
-                <b>ReMake
+                <b>The instance mask and relative depth map are generated via segmentation and monocular depth estimation. 
+                  The RGB image concatenated with the mask is encoded using a Transformer. 
+                  The relative depth and original depth are separately encoded, 
+                  and all features are fused and decoded to predict the complete depth map. 
+                  The target object's point cloud is then extracted using the instance mask.
               </p>
             <br>
         </div>
@@ -139,26 +162,66 @@
             <h2><strong>Results</strong></h2>
               <hr style="margin-top:0px">
                 <!-- <h3 style="margin-top:20px; margin-bottom:20px; color:#717980"><b>Cross-Category Part Segmentation</b></h3>  -->
-                We 
+                
                 <p class="text-justify">
                   <div class="row justify-content-center" style="align-items:center; display:flex;">
                     <img src="" alt="input" class="img-responsive graph" width="95%"/>
                   </div>
                 </p>
-                We 
+                We visualize a qualitative comparisons between our method and the State-of-the-Art methods on the TransCG dataset. 
+                Although ground truth have some noise points, TDCNet overfits the noise points, our method remain robust.
                 <p class="text-justify">
                   <div class="row justify-content-center" style="align-items:center; display:flex;">
-                    <img src="" alt="input" class="img-responsive graph" width="95%"/>
+                    <img src="images/fig4.png" alt="input" class="img-responsive graph" width="95%"/>
+                  </div>
+                </p>
+                 We tested our method in real-world experiments. To better evaluate the generalization, we tested different objects, background and viewpoints.
+                <p class="text-justify">
+                  <h3 style="margin-top:20px; margin-bottom:20px; color:#717980"><b>Top-down View</b></h3>
+                  <div class="row justify-content-center" style="align-items:center; display:flex;">
+                    <img src="images/td1.gif" alt="input" class="img-responsive graph" width="95%"/>
+                  </div>
+                  <div class="row justify-content-center" style="align-items:center; display:flex;">
+                    <img src="images/td2.gif" alt="input" class="img-responsive graph" width="95%"/>
+                  </div>
+                  <div class="row justify-content-center" style="align-items:center; display:flex;">
+                    <img src="images/td3.gif" alt="input" class="img-responsive graph" width="95%"/>
+                  </div>
+                  <div class="row justify-content-center" style="align-items:center; display:flex;">
+                    <img src="images/td4.gif" alt="input" class="img-responsive graph" width="95%"/>
+                  </div>
+                  <div class="row justify-content-center" style="align-items:center; display:flex;">
+                    <img src="images/td5.gif" alt="input" class="img-responsive graph" width="95%"/>
                   </div>
                 </p>
                 <p class="text-justify">
+                  <h3 style="margin-top:20px; margin-bottom:20px; color:#717980"><b>Bird-eye View</b></h3>
                   <div class="row justify-content-center" style="align-items:center; display:flex;">
-                    <img src="" alt="input" class="img-responsive graph" width="95%"/>
+                    <img src="images/be1.gif" alt="input" class="img-responsive graph" width="95%"/>
+                  </div>
+                  <div class="row justify-content-center" style="align-items:center; display:flex;">
+                    <img src="images/be2.gif" alt="input" class="img-responsive graph" width="95%"/>
+                  </div>
+                  <div class="row justify-content-center" style="align-items:center; display:flex;">
+                    <img src="images/be3.gif" alt="input" class="img-responsive graph" width="95%"/>
                   </div>
                 </p>
                 <p class="text-justify">
+                  <h3 style="margin-top:20px; margin-bottom:20px; color:#717980"><b>Horizontal View</b></h3>
                   <div class="row justify-content-center" style="align-items:center; display:flex;">
-                    <img src="" alt="input" class="img-responsive graph" width="95%"/>
+                    <img src="images/h1.gif" alt="input" class="img-responsive graph" width="95%"/>
+                  </div>
+                  <div class="row justify-content-center" style="align-items:center; display:flex;">
+                    <img src="images/h2.gif" alt="input" class="img-responsive graph" width="95%"/>
+                  </div>
+                  <div class="row justify-content-center" style="align-items:center; display:flex;">
+                    <img src="images/h3.gif" alt="input" class="img-responsive graph" width="95%"/>
+                  </div>
+                </p>
+                <p class="text-justify">
+                  <h3 style="margin-top:20px; margin-bottom:20px; color:#717980"><b>Application Demo & Extreme Scenario</b></h3>
+                  <div class="row justify-content-center" style="align-items:center; display:flex;">
+                    <img src="images/demo.gif" alt="input" class="img-responsive graph" width="95%"/>
                   </div>
                 </p>
   
@@ -195,7 +258,7 @@
             <hr style="margin-top:0px">
             <p>If you have any questions, please feel free to contact us:
               <ul>
-                <li><b>Yaofeng Cheng</b>&colon; chengyf<span style="display:none">Prevent spamming</span>@<span style="display:none">Prevent spamming</span>samsung.com </li>
+                <li><b>Yaofeng Cheng</b>&colon; chengyf<span style="display:none">Prevent spamming</span>@<span style="display:none">Prevent spamming</span>stu.hit.edu.cn </li>
               </ul>
             </p>
         </pre>
